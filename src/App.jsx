@@ -22,8 +22,13 @@ const router = createBrowserRouter([
   {
     path: "/projects/:id",
     element: <ProjectDetails />
+  },
+  
+  ],
+  {
+    basename: '/personal-website'
   }
-]);
+);
 
 function App() {
 
