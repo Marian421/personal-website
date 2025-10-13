@@ -25,6 +25,19 @@ const ProjectDetails = () => {
           <p className='indent-8 text-base md:text-lg'>{ project.description }</p>
         </div>
         <div>
+          <h3 className='text-cyan-950'>Live Demo</h3>
+          {project.liveDemo && 
+          <a
+              href = {project.liveDemo}
+              target = "_blank"
+              className='self-start hover:underline text-cyan-950'
+              rel = "noopener noreferrer"
+            >
+              Live demo
+            </a>
+          }
+        </div>
+        <div>
           <h3 className='text-cyan-950'>Tech Stack</h3>
           <div>
             {Object.entries(project.techStack).map(([category, technologies]) => (
