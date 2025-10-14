@@ -40,7 +40,7 @@ const projects = [
         'Tracks predecessors to reconstruct the full path'
     ],
     name: "Knight Travails",
-    liveDemo: "",
+    liveDemo: null,
     description: "A simple algorithmic visualization that calculates the shortest path a knight can take on an 8x8 chessboard, using Breadth-First Search (BFS).",
 },
 {
@@ -66,7 +66,7 @@ const projects = [
         'Built with Webpack'
     ],
     name: "Todo list",
-    liveDemo: "",
+    liveDemo: null,
     description: "A dynamic, modular, and persistent ToDo List application built as part of The Odin Project curriculum, using only JavaSript and CSS",
 },
 {
@@ -88,7 +88,7 @@ const projects = [
         'Code fully organized usind module pattern'
     ],
     name: "Tic Tac Toe",
-    liveDemo: "",
+    liveDemo: null,
     description: "A browser-based implementation of the classic Tic-Tac-Toe game, built as part of The Odin Project curriculum. This project focuses on modular JavaScript, using factory functions, IIFE modules, and clean architecture to separate game logic, display handling, and state management.",
     
 }

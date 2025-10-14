@@ -25,16 +25,18 @@ const ProjectDetails = () => {
           <p className='indent-8 text-base md:text-lg'>{ project.description }</p>
         </div>
         <div>
-          <h3 className='text-cyan-950'>Live Demo</h3>
           {project.liveDemo && 
-          <a
+            <div>
+            <h3 className='text-cyan-950'>Live Demo</h3>
+            <a
               href = {project.liveDemo}
               target = "_blank"
-              className='self-start hover:underline text-cyan-950'
+              className='self-start hover:underline text-orange-700 text-lg ml-4'
               rel = "noopener noreferrer"
             >
-              Live demo
+              Click here to see the live site
             </a>
+            </div>
           }
         </div>
         <div>
@@ -43,7 +45,7 @@ const ProjectDetails = () => {
             {Object.entries(project.techStack).map(([category, technologies]) => (
               technologies.length > 0 && (
                 <div key={category} className="mb-2">
-                  <h4 className="font-semibold capitalize text-orange-700">{category}</h4>
+                  <h4 className="font-semibold capitalize text-orange-700 ml-4">{category}</h4>
                   <ul className="flex gap-2 flex-wrap">
                     {technologies.map((tech, index) => (
                       <li 
