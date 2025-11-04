@@ -4,53 +4,67 @@ import projects from '../../data/projects';
 import Header from '../HomePage/Components/Header';
 
 const ProjectDetails = () => {
-
-  const { id }  = useParams();
-
+  const { id } = useParams();
   const project = projects.find(p => p.id === id);
 
-  console.log(project);
+  if (!project) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen text-gray-700">
+        <p>Project not found.</p>
+      </div>
+    );
+  }
 
   return (
-    <>
+    <div className="flex flex-col w-full min-h-screen bg-gray-50">
       <Header />
-      <div className='max-w-6xl mx-auto flex flex-col [&_*]:mb-4'>
-        <div className='flex flex-col'>
-          <img 
-          src={ project.path } 
-          alt={ project.name }
-          className='object-cover'
-           />
-          <h2 className='text-cyan-950'>{ project.name }</h2>
-          <p className='indent-8 text-base md:text-lg'>{ project.description }</p>
+
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+        {/* Project Image + Title */}
+        <div className="flex flex-col mb-8">
+          <img
+            src={project.path}
+            alt={project.name}
+            className="w-full max-h-[500px] object-cover rounded-xl shadow-sm mb-6"
+          />
+          <h2 className="text-2xl sm:text-3xl font-semibold text-gray-800 mb-3">
+            {project.name}
+          </h2>
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed indent-4 sm:indent-8">
+            {project.description}
+          </p>
         </div>
-        <div>
-          {project.liveDemo && 
-            <div>
-            <h3 className='text-cyan-950'>Live Demo</h3>
+
+        {/* Live Demo */}
+        {project.liveDemo && (
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">Live Demo</h3>
             <a
-              href = {project.liveDemo}
-              target = "_blank"
-              className='self-start hover:underline text-orange-700 text-lg ml-4'
-              rel = "noopener noreferrer"
+              href={project.liveDemo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 hover:underline text-lg transition-colors duration-300 ml-2"
             >
               Click here to see the live site
             </a>
-            </div>
-          }
-        </div>
-        <div>
-          <h3 className='text-cyan-950'>Tech Stack</h3>
-          <div>
-            {Object.entries(project.techStack).map(([category, technologies]) => (
+          </div>
+        )}
+
+        {/* Tech Stack */}
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Tech Stack</h3>
+          <div className="space-y-4">
+            {Object.entries(project.techStack).map(([category, technologies]) =>
               technologies.length > 0 && (
-                <div key={category} className="mb-2">
-                  <h4 className="font-semibold capitalize text-orange-700 ml-4">{category}</h4>
-                  <ul className="flex gap-2 flex-wrap">
+                <div key={category}>
+                  <h4 className="font-semibold text-orange-600 capitalize mb-1 ml-2">
+                    {category}
+                  </h4>
+                  <ul className="flex flex-wrap gap-2 ml-4">
                     {technologies.map((tech, index) => (
-                      <li 
-                        key={index} 
-                        className="bg-gray-200 text-gray-800 px-2 py-1 rounded-md text-sm"
+                      <li
+                        key={index}
+                        className="bg-gray-200 text-gray-800 px-3 py-1 rounded-md text-sm"
                       >
                         {tech}
                       </li>
@@ -58,34 +72,39 @@ const ProjectDetails = () => {
                   </ul>
                 </div>
               )
-            ))}
+            )}
           </div>
         </div>
-        <div>
-          <h3 className='text-cyan-950'>Features</h3>
-            <ul className='list-disc list-inside'>
-              {
-                project.features.map((feature, index) => (
-                  <li
-                  key={ index } 
-                  className='text-base '>
-                    { feature }
-                  </li>
-                ))
-              }
-            </ul>
+
+        {/* Features */}
+        <div className="mb-8">
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">Features</h3>
+          <ul className="list-disc list-inside text-gray-700 leading-relaxed text-base sm:text-lg ml-2">
+            {project.features.map((feature, index) => (
+              <li key={index}>{feature}</li>
+            ))}
+          </ul>
         </div>
-        <div>
-          <h3>For more details visit the <a
-          href={ project.source }
-          target='_blank'
-          rel='noopener noreferrer'
-          className='self-start hover:underline text-cyan-950'
-          >Github Repository</a> of this project.</h3>
+
+        {/* GitHub Repository */}
+        <div className="border-t border-gray-300 pt-6">
+          <h3 className="text-base sm:text-lg text-gray-700">
+            For more details, visit the{' '}
+            <a
+              href={project.source}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-orange-600 hover:underline transition-colors duration-300"
+            >
+              GitHub Repository
+            </a>{' '}
+            of this project.
+          </h3>
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   )
 }
 
 export default ProjectDetails
+
